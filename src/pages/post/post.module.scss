@@ -1,1 +1,47 @@
-// TODO
+.container {
+  img {
+    width: 100%;
+    max-height: 400px;
+  }
+  .content {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+
+    h1 {
+      color: var(--gray-100);
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .headerPost {
+      color: var(--gray-400);
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    .postContent {
+      margin-top: 64px;
+      h2 {
+        color: var(--gray-100);
+        font-size: 36px;
+      }
+
+      p {
+        margin-top: 64px;
+        color: var(--gray-200);
+        font-weight: 400;
+        text-align: justify;
+      }
+    }
+  }
+}
