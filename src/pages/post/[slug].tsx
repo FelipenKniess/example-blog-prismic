@@ -29,37 +29,40 @@ interface PostProps {
 
 export default function Post({ post }: PostProps): JSX.Element {
   return (
-    <main className={styles.container}>
-      <img src={post.data.banner.url} alt="Banner post" />
-      <div className={styles.content}>
-        <h1>{post.data.title}</h1>
-        <div className={styles.headerPost}>
-          <span>
-            <AiOutlineCalendar size={20} />
-            {formatDate(post.first_publication_date)}
-          </span>
-          <span>
-            <AiOutlineUser size={20} />
-            {post.data.author}
-          </span>
-          <span>
-            <BiTime size={20} /> 4 min
-          </span>
+    <>
+      <main className={styles.container}>
+        <img src={post.data.banner.url} alt="Banner post" />
+        <div className={styles.content}>
+          <h1>{post.data.title}</h1>
+          <div className={styles.headerPost}>
+            <span>
+              <AiOutlineCalendar size={20} />
+              {formatDate(post.first_publication_date)}
+            </span>
+            <span>
+              <AiOutlineUser size={20} />
+              {post.data.author}
+            </span>
+            <span>
+              <BiTime size={20} /> 4 min
+            </span>
+          </div>
+          <section className={styles.postContent}>
+            {post.data.content.map(content => {
+              return (
+                <>
+                  <h2>{content.heading}</h2>
+                  {content.body.map(body => {
+                    return <p>{body.text}</p>;
+                  })}
+                </>
+              );
+            })}
+          </section>
         </div>
-        <section className={styles.postContent}>
-          {post.data.content.map(content => {
-            return (
-              <>
-                <h2>{content.heading}</h2>
-                {content.body.map(body => {
-                  return <p>{body.text}</p>;
-                })}
-              </>
-            );
-          })}
-        </section>
-      </div>
-    </main>
+      </main>
+      <span>Carregando...</span>
+    </>
   );
 }
 
@@ -68,7 +71,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // const posts = await prismic.query(TODO);
 
   return {
-    paths: [],
+    paths: [
+      {
+        params: {
+          slug: 'como-utilizar-hooks',
+        },
+      },
+      {
+        params: {
+          slug: 'criando-um-app-cra-do-zero',
+        },
+      },
+    ],
     fallback: true,
   };
 };
